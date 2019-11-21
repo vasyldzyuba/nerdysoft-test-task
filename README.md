@@ -2,6 +2,16 @@ This is NerdySoft test task for trainee position.
 
 Let's start using this task!
 
+----USED TECHNOLOGIES----
+1. HTML5
+2. CSS3
+3. Bootstrap4
+4. JavaScript
+5. jQuery
+6. AngularJs
+7. Underscore.js
+
+
 ----DOWNLOAD INSTRUCTIONS----
 1. Download this project and click green button 'Clone or download'.
 2. Next you have to unzip downloaded file into your computer.
