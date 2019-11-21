@@ -9,7 +9,8 @@ Let's start using this task!
 4. JavaScript
 5. jQuery
 6. AngularJs
-7. Underscore.js
+7. LocalStorage
+8. Underscore.js
 
 
 ----DOWNLOAD INSTRUCTIONS----
