@@ -1,0 +1,151 @@
+<!-- registration modal  -->
+<div class="modal fade" data-backdrop="static" id="modalRegisterForm" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content text-center">
+			<div class="modal-header text-center">
+				<h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+			</div>
+			<div class="modal-body mx-3">
+				<div class="md-form mb-5">
+					<i class="fas fa-user prefix grey-text"></i>
+					<p class="text-warning" ng-show="!todo.registerUserEmail">Enter email correctly</p>
+					<input type="Email" id="orangeForm-name" ng-model="todo.registerUserEmail"
+						class="form-control validate" placeholder="Email">
+				</div>
+				<div class="md-form mb-4">
+					<i class="fas fa-lock prefix grey-text"></i>
+					<input type="password" id="orangeForm-pass" ng-model="todo.registerUserPassword"
+						class="form-control validate" placeholder="Password">
+				</div>
+			</div>
+			<div class="modal-footer d-flex justify-content-center">
+				<button class="btn btn-info" id="btnReg" type="button" ng-click="todo.registerUserBtn()"
+					ng-disabled="!todo.registerUserEmail">Sign up</button>
+			</div>
+			<a href="" class="text-info font-weight-bold" id="signInLink">Already registered? Click here to Sign In</a>
+		</div>
+	</div>
+</div>
+<h1 class="text-center text-info" ng-if="todo.startUser.length">Hello User: {{todo.startUser}}</h1>
+<button data-toggle="modal" data-target="#loginModal" class="btn btn-info btn-block my-4" type="button">Sign
+	in / Sign Up</button>
+
+<!--Login modal-->
+<div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content text-center">
+			<div class="modal-body">
+				<form class="text-center border border-light p-5">
+					<p class="h4 mb-4">Sign In</p>
+					<p class="text-warning" ng-show="!todo.login">Enter email correctly</p>
+					<input type="Email" id="loginUser" class="form-control mb-4 validate" placeholder="Email"
+						ng-model='todo.login'>
+					<input type="password" id="passwordUser" class="form-control mb-4" placeholder="Password"
+						ng-model='todo.password'>
+					<button id="submit" class="btn btn-info" ng-disabled="!todo.login" type="button"
+						ng-click="todo.submit()">Sign
+						in</button>
+				</form>
+			</div>
+			<a href="" id="signUpLink" class="text-info font-weight-bold">Not a member? Click here to Sign Up.</a>
+		</div>
+	</div>
+</div>
+
+
+<!--Edit modal-->
+<div class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	id="editModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Change this todo:</label>
+					<input type="text" ng-model='todo.editTodoText' class="form-control">
+				</div>
+				<input type="button" value="Change" class="btn btn-success" ng-click='todo.saveTodo()' id="saveHuman"
+					data-toggle="modal" data-target="#editModal">
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Add new task modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Add new task</h5>
+				<button type="button" data-dismiss="modal" class="close" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="input-group input-group-lg">
+					<input type="text" ng-model='todo.newTodo' placeholder="New todo" id="inpText" class="form-control"
+						aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-disabled='todo.newTodo.length == 0' id="btnAdd" ng-click='todo.btnAdd()'
+					data-dismiss="modal" class="btn btn-secondary btn-lg btn-block">Add New
+					Task</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--todo list content start-->
+<ul class="list-group bg-dark" id="table">
+	<li>
+		<button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
+			data-target="#exampleModalCenter" id="addTaskbtn" ng-disabled="todo.loginName.length == 0">
+			Add new task
+		</button>
+	</li>
+	<li id="noTodos" class="emptyTodo" ng-hide="todo.todos.length && todo.loginName.length">No tasks yet <br>
+		Add a task to get started</li>
+	<li ng-repeat='new in todo.todos track by $index' ng-if="new.taskOwner === todo.startUser">
+		<div id="buttonsObg">
+			<div>
+				<label for="checkbox" class="strikethrough">{{new.todo}}</label>
+			</div>
+			<div>
+				<span class="text-info">{{new.taskSender}}</span>
+				<button type="button" id="btnSendTo" ng-disabled="todo.loginName.length <= 1"
+					ng-click='todo.getDataToShare(new)' class="btn btn-secondary btn-sm" data-toggle="modal"
+					data-target="#sendToModal">Share task</button>
+				<button type="button" id="btnEdit" ng-click='todo.btnEdit(new)' class="btn btn-secondary btn-sm"
+					data-toggle="modal" data-target="#editModal">Edit</button>
+				<button type="button" id="btnRemove" ng-click='todo.btnRemove($index)'
+					class="btn btn-secondary btn-sm">Remove</button>
+			</div>
+		</div>
+		<br>
+	</li>
+</ul>
+
+<!-- share task modal  -->
+<div class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	id="sendToModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="form-group">
+					<h5>selected task: "{{todo.shareTodoText}}"</h5>
+					<label for="exampleInputEmail1">Select receiver email:</label>
+					<select name="" id="" ng-model="todo.taskReceiver">
+						<option ng-repeat="user in todo.uniqUser">{{user.userName}}</option>
+					</select>
+					<input type="text" class="form-control sender" ng-model="todo.enteredTaskSender" required placeholder="Enter your name">
+				</div>
+				<input type="button" value="Share" class="btn btn-success" id="shareBtn" ng-click='todo.sendToUser($index)'
+					data-toggle="modal" data-target="#sendToModal">
+			</div>
+		</div>
+	</div>
+</div>
