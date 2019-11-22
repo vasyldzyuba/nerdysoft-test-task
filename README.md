@@ -35,7 +35,8 @@ Let's start to use it now!
 If you have done download instructions, well you can use it now.
 
 ----USAGE INSTRUCTIONS----
-1. First you have to registrate into system and login(login inputs will be autocomplited after clicking 'Sign Up' button).
+
+1. First you have to registrate into system and login(login inputs will be autocomplited after clicking 'Sign Up' button) and you won't be able to add task because 'add task' button will be disabled until you'll be registered.
 2. Now you can add tasks and edit/delete them. But you can't share tasks with other users if you are one user in the system.
 3. To share tasks you have to click 'Sign Up' button and registrate and come up with other user email and password.
 4. Now you can add some tasks and share them with other users.
