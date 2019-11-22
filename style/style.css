@@ -125,7 +125,7 @@ input {
 }
 
 
-*/ #btnEdit {
+ #btnEdit {
     width: 68px;
     margin: 5px 5px 2px 1px;
 }
@@ -158,7 +158,7 @@ input {
     background-color: grey;
 }
 
-/ #buttonsObg {
+#buttonsObg {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
